@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Club - Premium Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* ================= RESET & VARIABLES ================= */
+        :root {
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --dark-bg: #050505;
+            --card-bg: #111111;
+            --text-light: #f0f0f0;
+            --gradient: linear-gradient(90deg, #ff0055, #ff9900);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        ul { list-style: none; }
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 0, 85, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        /* ================= UTILITIES ================= */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .section-subtitle {
+            color: #888;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+        }
+
+        /* ================= BUTTONS (RGB STYLE) ================= */
+        .rgb-btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            border: 2px solid transparent;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .rgb-btn::before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            z-index: -1;
+            border-radius: 55px;
+            background-size: 400%;
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .rgb-btn:hover::before { opacity: 1; }
+        .rgb-btn:hover { transform: scale(1.05); color: #fff; }
+
+        /* ================= HEADER ================= */
+        header {
+            background: rgba(0,0,0,0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+Rabbi Hasan, [2/1/2026 10:19 PM]
+.nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 900; color: #fff; letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), #050505), url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        
+        .hero h1 span { color: transparent; -webkit-text-stroke: 1px var(--secondary); }
+        .hero p { font-size: 1.3rem; margin-bottom: 40px; color: #ddd; max-width: 600px; margin: 0 auto 40px auto; }
+
+        /* ================= STATS BAR ================= */
+        .stats-bar {
+            background: #111;
+            padding: 30px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
+        .stat-item h3 { font-size: 2rem; color: var(--secondary); }
+        .stat-item p { font-size: 0.9rem; color: #777; text-transform: uppercase; }
+
+        /* ================= FEATURES ================= */
+        .features { background: #0a0a0a; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card {
+            background: #151515;
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+
+        /* ================= GALLERY (BLURRED & CLICKABLE) ================= */
+        .gallery { background: #050505; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block; /* Important for anchor tag */
+            border: 2px solid #222;
+        }
+        .gallery-item:hover { border-color: var(--secondary); }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(15px);
+            transition: 0.5s;
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            padding: 8px 15px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-weight: bold;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        /* ================= STEPS & REVIEWS ================= */
+        .steps { background: #111; }
+        .step-box {
+            background: #050505;
+            padding: 30px;
+            margin: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            border-left: 5px solid var(--secondary);
+        }
+        .step-num { font-size: 3rem; font-
+
+Rabbi Hasan, [2/1/2026 10:19 PM]
+weight: bold; color: #333; margin-right: 20px; }
+        
+        .review-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--primary);
+        }
+        .stars { color: gold; }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #000;
+            padding: 50px 0 20px;
+            border-top: 1px solid #222;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer-links a { margin: 0 10px; color: #888; }
+        .footer-links a:hover { color: #fff; }
+
+        /* ================= MOBILE STICKY BTN ================= */
+        .mobile-sticky {
+            position: fixed;
+            bottom: 20px;
+            left: 5%;
+            width: 90%;
+            z-index: 999;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: 1fr; gap: 10px; }
+            .rgb-btn { padding: 15px 30px; font-size: 1rem; }
+            footer { padding-bottom: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">VELVET<span>CLUB</span></div>
+            <!-- Class 'offer-link' যুক্ত করা হলো -->
+            <a href="#" class="nav-btn offer-link">LOGIN</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div style="margin-bottom: 20px; display: inline-block; background: #ff0000; padding: 5px 15px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">WARNING: 18+ CONTENT</div>
+            <h1>MEET LOCAL SINGLES <br><span>TONIGHT</span></h1>
+            <p>Don't spend another night alone. Join the most exclusive private dating community in your area. 100% Discrete.</p>
+            <!-- Class 'offer-link' যুক্ত করা হলো -->
+            <a href="#" class="rgb-btn offer-link">GET FREE ACCESS NOW</a>
+        </div>
+    </section>
+
+    <!-- Live Stats -->
+    <section class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>12,405</h3>
+                <p>Online Now</p>
+            </div>
+            <div class="stat-item">
+                <h3>4,800+</h3>
+                <p>New Photos Today</p>
+            </div>
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p>Response Rate</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section-padding features">
+        <div class="container">
+            <h2 class="section-title text-center">Why Choose Us?</h2>
+            <div class="features-grid" style="margin-top: 40px;">
+                <div class="feature-card">
+                    <span class="icon">🔒</span>
+                    <h3>Secure & Private</h3>
+                    <p>Your privacy is our priority. Advanced encryption keeps your chats and photos safe.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">📍</span>
+                    <h3>Nearby Matches</h3>
+                    <p>Our GPS matching system finds active users within 5 miles of your location.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🚫</span>
+                    <h3>No Fakes</h3>
+                    <p>Every profile is manually verified. Say goodbye to bots and hello to real people.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section (IMAGES with LINKS) -->
+    <section class="section-padding gallery">
+        <div class="container">
+            <h2 class="section-title text-center">Active Members</h2>
+            <p class="section-subtit
+
+Rabbi Hasan, [2/1/2026 10:19 PM]
+le text-center" style="color: var(--primary);">Tap photo to unlock & view profile</p>
+            
+            <div class="gallery-grid">
+                <!-- প্রতিটি ছবিতে 'offer-link' ক্লাস দেওয়া হয়েছে -->
+                <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                 <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+                 <a href="#" class="gallery-item offer-link">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Member">
+                    <div class="overlay-text">UNLOCK</div>
+                </a>
+            </div>
+
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="#" class="rgb-btn offer-link">VIEW ALL PROFILES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="section-padding steps">
+        <div class="container">
+            <h2 class="section-title text-center">How It Works</h2>
+            <div class="step-box">
+                <span class="step-num">01</span>
+                <div>
+                    <h3>Create Free Account</h3>
+                    <p>It takes less than 60 seconds to join. No credit card needed.</p>
+                </div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">02</span>
+                <div>
+                    <h3>Browse & Match</h3>
+                    <p>Use our advanced filters to find exactly who you are looking for.</p>
+                </div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">03</span>
+                <div>
+                    <h3>Chat & Meet</h3>
+                    <p>Start a conversation and arrange a meetup instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-padding" style="background: #080808;">
+        <div class="container">
+            <h2 class="section-title text-center">Success Stories</h2>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+
+Rabbi Hasan, [2/1/2026 10:19 PM]
+<p>"I found someone within 10 minutes of signing up. This site is legit!" - <strong>Mike, 24</strong></p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Finally a place with real people. Highly recommended." - <strong>Sarah, 22</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px;">VELVET<span>CLUB</span></div>
+            <div class="footer-links">
+                <!-- Footer লিংকেও ক্লাস বসানো হয়েছে -->
+                <a href="#" class="offer-link">Home</a>
+                <a href="#" class="offer-link">Terms of Use</a>
+                <a href="#" class="offer-link">Privacy Policy</a>
+                <a href="#" class="offer-link">Contact</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.8rem;">
+                This site contains user-generated content and is intended for adults 18 years of age or older. 
+                By entering this site you certify that you are 18 years or older.
+            </p>
+            <p style="margin-top: 10px;">&copy; 2024 Velvet Club Dating.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Button -->
+    <div class="mobile-sticky">
+        <a href="#" class="rgb-btn offer-link" style="width: 100%; display: block; padding: 15px;">JOIN FREE NOW</a>
+    </div>
+
+    <!-- ================= JAVASCRIPT LINK RANDOMIZER ================= -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // আপনার দুটি লিংক এখানে রাখা হলো
+            const links = [
+                "https://www.effectivegatecpm.com/w5jjcb0mys?key=ae10f63b9df49f69ec9d877684097362",
+                "https://www.effectivegatecpm.com/w5jjcb0mys?key=ae10f63b9df49f69ec9d877684097362"
+            ];
+
+            // সব লিংক বাটন এবং ইমেজ সিলেক্ট করা হচ্ছে (যেগুলোতে 'offer-link' ক্লাস আছে)
+            const offerLinks = document.querySelectorAll('.offer-link');
+
+            // লুপের মাধ্যমে প্রতিটি বাটনে এলোমেলোভাবে (Randomly) লিংক সেট করা হচ্ছে
+            offerLinks.forEach(function(element) {
+                // 0 বা 1 এর মধ্যে যেকোনো একটি সংখ্যা র‍্যান্ডমলি সিলেক্ট হবে
+                const randomIndex = Math.floor(Math.random() * links.length);
+                
+                // নির্বাচিত লিংকটি href এ বসিয়ে দেওয়া হচ্ছে
+                element.href = links[randomIndex];
+                
+                // লিংকে ক্লিক করলে যেন নতুন ট্যাবে ওপেন হয় (Optional)
+                // element.target = "_blank"; 
+            });
+        });
+    </script>
+
+</body>
+</html>
